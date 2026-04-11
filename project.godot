@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Path Editor on Terrain"
+config/name="GraphEditor3D"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
