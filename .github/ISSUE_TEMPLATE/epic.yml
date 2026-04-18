@@ -4,18 +4,23 @@ title: "[Epic] "
 labels:
   - "kind:epic"
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Phase is tracked via Milestone and Project `Phase` field, not via labels.
+
   - type: dropdown
     id: phase
     attributes:
       label: Phase
-      description: Select exactly one phase.
+      description: Select exactly one phase; set matching milestone and Project Phase field after issue creation.
       options:
-        - "P1 Data Model and Format"
-        - "P2 Editor Core"
-        - "P3 Terrain Authoring"
-        - "P4 Multimodal and Validation"
-        - "P5 UX and Query API"
-        - "P6 Quality Demo Release"
+        - "Phase-1 (Data Model and Format)"
+        - "Phase-2 (Editor Core)"
+        - "Phase-3 (Terrain Authoring)"
+        - "Phase-4 (Multimodal and Validation)"
+        - "Phase-5 (UX and Query API)"
+        - "Phase-6 (Quality Demo Release)"
     validations:
       required: true
 
