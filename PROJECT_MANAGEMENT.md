@@ -144,6 +144,26 @@ Update existing issue body safely:
 gh issue edit 11 --body-file /tmp/issue.md
 ```
 
+## Branch Naming Convention
+
+- Use intent-based branch prefixes for all work branches.
+- Recommended prefixes:
+	- `feat/` for new functionality
+	- `fix/` for bug fixes
+	- `chore/` for maintenance, tooling, and process updates
+	- `docs/` for documentation-only changes
+	- `refactor/` for structural code changes without behavior changes
+	- `test/` for test-only work
+- Include issue reference or short scope after the prefix.
+	- Example: `feat/11-schema-v0-identity-rules`
+
+Release prefix policy:
+
+- `release/` is reserved for release preparation and stabilization branches.
+- `release/*` branches are protected branches.
+- No direct pushes to `release/*`; changes must go through pull requests.
+- Only maintainers should create or manage `release/*` branches.
+
 ## Decision Tracking
 
 - Architecture and process decisions are tracked as issues labeled `kind:decision`.
