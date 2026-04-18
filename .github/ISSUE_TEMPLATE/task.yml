@@ -1,9 +1,8 @@
 name: Task
 description: Implementable work item under one epic
-title: "[Task][P1] "
+title: "[Task] "
 labels:
   - "kind:task"
-  - "phase:P1"
 body:
   - type: input
     id: parent_epic
@@ -11,20 +10,6 @@ body:
       label: Parent epic issue
       description: Provide epic reference like #12.
       placeholder: "#<epic-issue-number>"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: phase
-    attributes:
-      label: Phase
-      options:
-        - "P1 Data Model and Format"
-        - "P2 Editor Core"
-        - "P3 Terrain Authoring"
-        - "P4 Multimodal and Validation"
-        - "P5 UX and Query API"
-        - "P6 Quality Demo Release"
     validations:
       required: true
 
@@ -46,6 +31,10 @@ body:
     attributes:
       label: Objective
       description: Clear and testable implementation goal.
+      placeholder: |
+        Example:
+        Define schema v0 for Node, Link, Area, Layer, and Connector entities,
+        including required fields and identity constraints.
     validations:
       required: true
 
@@ -64,6 +53,11 @@ body:
     attributes:
       label: Implementation notes
       description: Constraints, sequencing, and technical notes.
+      placeholder: |
+        - Constraints:
+        - Dependencies:
+        - Risks:
+        - Non-goals:
     validations:
       required: false
 

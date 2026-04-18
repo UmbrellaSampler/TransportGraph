@@ -1,9 +1,8 @@
 name: Epic
 description: High-level implementation objective within one phase milestone
-title: "[Epic][P1] "
+title: "[Epic] "
 labels:
   - "kind:epic"
-  - "phase:P1"
 body:
   - type: dropdown
     id: phase

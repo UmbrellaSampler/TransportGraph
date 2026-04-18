@@ -1,9 +1,8 @@
 name: Sub-task
 description: Small tracked unit under a task
-title: "[Sub-task][P1] "
+title: "[Sub-task] "
 labels:
   - "kind:subtask"
-  - "phase:P1"
 body:
   - type: input
     id: parent_task
@@ -19,7 +18,10 @@ body:
     attributes:
       label: Deliverable
       description: Specific output expected from this sub-task.
-      placeholder: "Describe exactly what done looks like."
+      placeholder: |
+        Example:
+        Add deterministic ordering rules for all top-level collections
+        and document normalization requirements.
     validations:
       required: true
 
@@ -37,5 +39,8 @@ body:
     attributes:
       label: Dependencies or blockers
       description: Optional references to related issues.
+      placeholder: |
+        - Depends on #...
+        - Blocked by #...
     validations:
       required: false

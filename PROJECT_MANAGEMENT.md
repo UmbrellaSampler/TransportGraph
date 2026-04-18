@@ -19,15 +19,18 @@ This document defines the general GitHub project management structure for GraphC
 - Epic:
 	- One high-level objective within exactly one phase.
 	- Must include scope boundaries and acceptance criteria.
-	- Labeled with `kind:epic` and one `phase:*` label.
+	- Labeled with `kind:epic`.
+	- Must be assigned to one phase milestone and one Project `Phase` field value.
 - Task:
 	- Implementable work item under one epic.
 	- Must include objective and acceptance criteria.
-	- Labeled with `kind:task` and one `phase:*` label.
+	- Labeled with `kind:task`.
+	- Must be assigned to one phase milestone and one Project `Phase` field value.
 - Sub-task:
 	- Independently tracked child item under one task.
 	- Use only when separate ownership or status tracking is needed.
-	- Labeled with `kind:subtask` and one `phase:*` label.
+	- Labeled with `kind:subtask`.
+	- Must be assigned to one phase milestone and one Project `Phase` field value.
 
 ## Milestone Model
 
@@ -102,6 +105,44 @@ Required Project fields:
 - No issue moves to `In Progress` without acceptance criteria written in the issue body.
 - `Blocked` status requires blocker details in the issue body.
 - `Done` status requires a merge reference or explicit no-code justification.
+
+## CLI Issue Creation (Markdown-Safe)
+
+- Prefer `gh issue create --body-file` and `gh issue edit --body-file` for multi-section markdown.
+- Avoid long inline `--body` one-liners for headings and checklists; they are easy to break in shell quoting.
+
+Recommended workflow:
+
+```bash
+cat > /tmp/issue.md <<'EOF'
+## Objective
+Short objective sentence.
+
+## Parent Epic
+- #10 Epic title
+
+## Acceptance Criteria
+- [ ] First criterion
+- [ ] Second criterion
+
+## Notes
+Optional notes.
+EOF
+
+gh issue create \
+	--title "[Task] Your task title" \
+	--body-file /tmp/issue.md \
+	--label "kind:task" \
+	--label "area:data-model" \
+	--label "priority:Important" \
+	--milestone "v0.1-P1 Data Model and Format"
+```
+
+Update existing issue body safely:
+
+```bash
+gh issue edit 11 --body-file /tmp/issue.md
+```
 
 ## Decision Tracking
 
