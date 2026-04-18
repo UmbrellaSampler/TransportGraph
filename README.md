@@ -57,3 +57,72 @@ A network can include multiple transport modalities such as walking, roads, rail
 - The network is saved and loaded from dedicated framework assets.
 - Validation catches broken topology and incompatible layer transitions.
 - A downstream system can consume the network for path computation without changing core data structures.
+
+## Version 0.1 Milestone Checklist (Strict)
+
+Release rule: Version 0.1 is complete only if every item below is checked.
+
+### A. Data Model and File Format
+- [ ] A `NetworkAsset` root structure exists with `id`, `name`, `version`, `layers`, `nodes`, `links`, `areas`, and `connectors`.
+- [ ] Every entity has a stable unique identifier.
+- [ ] Layer references are explicit and validated for all layer-bound entities.
+- [ ] Link direction is represented (`directed` or `undirected`) in the saved data.
+- [ ] File format versioning is implemented with `format_version`.
+- [ ] Save and load of the same file is deterministic (no unintended structural changes).
+
+### B. Editor Core Operations
+- [ ] Create, move, and delete node operations are implemented.
+- [ ] Create, reshape, and delete link operations are implemented.
+- [ ] Create and delete layer operations are implemented.
+- [ ] Reassigning an entity to another layer is supported where valid.
+- [ ] Undo and redo support at least the last 20 operations without corruption.
+
+### C. Terrain-Aware Authoring
+- [ ] Node placement supports terrain snap mode.
+- [ ] Link control points support terrain follow mode.
+- [ ] Manual elevation override is supported for nodes and link control points.
+- [ ] Link placement mode flags support at-grade, bridge-like, and tunnel-like semantics.
+- [ ] Editing remains stable after terrain height changes (no crashes or broken references).
+
+### D. Multimodal and Layer Semantics
+- [ ] Multiple layers can coexist in one network asset.
+- [ ] Same-layer links connect only to nodes in the same layer unless a connector is used.
+- [ ] Inter-layer connectors are first-class entities with source and destination layer references.
+- [ ] Connector validation enforces compatibility rules defined by profiles.
+
+### E. Validation Engine
+- [ ] Validator reports orphan links (missing endpoint nodes).
+- [ ] Validator reports invalid layer references.
+- [ ] Validator reports connector violations.
+- [ ] Validator reports geometric constraint violations (at minimum slope and minimum segment length).
+- [ ] Validation results include severity (`error`, `warning`) and entity reference.
+
+### F. Visualization and UX Baseline
+- [ ] Nodes are rendered with clearly visible point markers.
+- [ ] Links are rendered with clearly visible path geometry.
+- [ ] Selected entities have distinct highlighting.
+- [ ] Layer visibility toggling is implemented.
+- [ ] Validation issues are visible in editor UI and can select the affected entity.
+
+### G. API Readiness for Path Consumers
+- [ ] Read-only query API returns adjacency for nodes and links.
+- [ ] Query API can build a traversable view across selected layers.
+- [ ] Query API can include connector edges when requested.
+- [ ] Query output is stable enough to be consumed by an external pathfinding module.
+
+### H. Non-Functional Gates
+- [ ] All sample assets in `examples/` load without runtime errors.
+- [ ] No data-loss bug remains open for save/load operations.
+- [ ] No crash-class bug remains open for core editing operations.
+- [ ] README documents known limitations for Version 0.1.
+
+### I. Test and Demo Gates
+- [ ] At least one automated round-trip test verifies save -> load -> save equivalence rules.
+- [ ] At least one automated validator test per rule family (topology, layers, connectors, geometry).
+- [ ] At least one integration demo scene shows a multimodal network with at least 3 layers and 2 connectors.
+- [ ] Manual test script exists and is reproducible by a second developer.
+
+### J. Exit Criteria
+- [ ] All checklist items A-I are complete.
+- [ ] Open issues are triaged; all remaining issues are non-blocking and documented.
+- [ ] A Version 0.1 release tag is created with release notes and schema version.
