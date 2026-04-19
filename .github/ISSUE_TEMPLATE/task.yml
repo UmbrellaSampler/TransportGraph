@@ -35,15 +35,7 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: acceptance
-    attributes:
-      label: Acceptance criteria
-      placeholder: |
-        - [ ] AC1 ...
-        - [ ] AC2 ...
-    validations:
-      required: true
+  
 
   - type: textarea
     id: implementation_notes
@@ -59,12 +51,11 @@ body:
       required: false
 
   - type: textarea
-    id: subtask_plan
+    id: acceptance
     attributes:
-      label: Sub-task plan
-      description: Use sub-issues for independently tracked sub-work.
+      label: Acceptance criteria
       placeholder: |
-        - [ ] Sub-task A
-        - [ ] Sub-task B
+        - [ ] AC1 ...
+        - [ ] AC2 ...
     validations:
-      required: false
+      required: true
