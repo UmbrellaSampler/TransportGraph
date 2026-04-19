@@ -27,7 +27,7 @@ jobs:
         uses: GsActions/commit-message-checker@v2
         with:
           # Matches "feat: ", "fix: ", "refac: ", or "doc: " at the start
-          pattern: "^(feat|fix|refac|doc): "
+          pattern: "^(feat|fix|refac|docs|chore|test): "
           error: 'Your commit message must start with "feat: ", "fix: ", "refac: ", or "doc: ".'
           checkAllCommitMessages: "true"
           accessToken: ${{ secrets.GITHUB_TOKEN }}

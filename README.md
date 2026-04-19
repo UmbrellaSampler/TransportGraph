@@ -8,6 +8,11 @@ The framework models transport systems as a generic network abstraction that can
 
 A network can include multiple transport modalities such as walking, roads, rail, bus, tram, cargo, utilities, and logistics transfer points, while remaining mode-agnostic at the core data model level.
 
+## Product Positioning
+- GraphCreator3D is a core framework, not a final domain-specific editor.
+- Domain-specific editors (for example road editor, rail editor, utility editor) are expected as extensions built on top of this core.
+- The core defines shared topology, geometry, persistence, and validation foundations; extensions add narrowed semantics, richer UX, and richer visualization.
+
 ## Scope
 
 ### In Scope
@@ -32,20 +37,43 @@ A network can include multiple transport modalities such as walking, roads, rail
   - Geometric constraints (for example slope, curvature, minimum spacing) via configurable profiles.
 - Extensibility:
   - Mode-specific behavior through data profiles and plugins, not hardcoded transport-specific core classes.
+  - Extension editors can add mode-focused tools, constraints, and rendering without changing the core asset model.
 - Path-query readiness:
   - Data structures and APIs suitable for downstream multi-agent and goods pathfinding systems.
+
+### Explicit Core vs Extension Boundary
+- Core framework responsibilities:
+  - Generic data model and asset persistence.
+  - Terrain-aware editing foundations.
+  - Shared validation engine and base editor primitives.
+  - Read-only query interfaces for path consumers.
+- Extension editor responsibilities:
+  - Mode-specific editing semantics (for example lanes, track classes, pipe classes).
+  - Domain-specific visualization and authoring UX.
+  - Specialized validation rules that depend on a concrete transport domain.
 
 ### Out of Scope (Current Phase)
 - High-fidelity graphics and final art pipeline.
 - Economic simulation, demand generation, and city-management gameplay loops.
 - Detailed simulation of concrete transport entities (vehicle physics, schedules, traffic AI, passenger behavior).
 - Final balancing of throughput, pricing, resource flow, or logistics optimization.
+- Hardcoding road/rail/utility-specific semantics into the core framework.
 
 ### Design Principles
 - Core-first abstraction: transport modes are profiles over common graph primitives.
 - Spatial correctness: topology and geometry must remain valid on editable terrain.
 - Separation of concerns: authoring framework first, gameplay simulation later.
 - Reusability: the same core asset model should support different domain-specific editors (road, rail, utility, logistics).
+- Backward-compatible extensibility: extension capabilities should not require schema-breaking core rewrites for each new transport domain.
+
+### Extension Contract (Minimum)
+- Each extension should integrate through stable core extension points:
+  - Profile registration: declare mode-specific constraints and metadata.
+  - Tool registration: provide mode-specific editor interactions.
+  - Validation hooks: contribute additional domain checks.
+  - Rendering adapters: map core entities to extension-specific visuals.
+- Extensions must read and write the same core `NetworkAsset` model.
+- Extensions may add optional metadata blocks, but must not invalidate core asset loading.
 
 ### Non-Goals for Initial Release
 - Building a full city-builder game.
