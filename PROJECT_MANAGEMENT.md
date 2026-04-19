@@ -5,7 +5,7 @@ This document defines the general GitHub project management structure for Transp
 ## Purpose
 
 - Define how epics, tasks, and sub-tasks are represented in GitHub.
-- Define how milestones and labels map work to phases.
+- Define how the single release milestone maps to tracked work.
 - Keep planning rules stable while implementation details evolve.
 
 ## Source of Truth
@@ -17,41 +17,36 @@ This document defines the general GitHub project management structure for Transp
 ## Work Hierarchy
 
 - Epic:
-	- One high-level objective within exactly one phase.
+	- One high-level objective contributing to the v0.1 release.
 	- Must include scope boundaries and acceptance criteria.
 	- Labeled with `kind:epic`.
-	- Must be assigned to one phase milestone and one Project `Phase` field value.
+	- Must be assigned to the `v0.1` milestone.
 - Task:
 	- Implementable work item under one epic.
+	- Prefer end-to-end vertical slices over single-subsystem tasks.
 	- Parent relationship must be tracked via GitHub native issue hierarchy by setting the epic as the parent issue.
 	- Must include objective and acceptance criteria.
 	- Labeled with `kind:task`.
-	- Must be assigned to one phase milestone and one Project `Phase` field value.
+	- Must be assigned to the `v0.1` milestone.
 - Sub-task:
 	- Independently tracked child item under one task.
 	- Parent relationship must be tracked via GitHub native issue hierarchy by setting the task as the parent issue.
 	- Use only when separate ownership or status tracking is needed.
 	- Labeled with `kind:subtask`.
-	- Must be assigned to one phase milestone and one Project `Phase` field value.
+	- Must be assigned to the `v0.1` milestone.
 
 ## Milestone Model
 
-- Use one milestone per implementation phase:
-	- `v0.1-P1 Data Model and Format`
-	- `v0.1-P2 Editor Core`
-	- `v0.1-P3 Terrain Authoring`
-	- `v0.1-P4 Multimodal and Validation`
-	- `v0.1-P5 UX and Query API`
-	- `v0.1-P6 Quality Demo Release`
+- Use a single milestone `v0.1` as the release gate.
+- Every in-scope issue must be assigned to `v0.1`.
+- The README checklist sections A-J define what "v0.1 complete" means; they are a coverage map, not a delivery order.
 
-## Phase to Scope Mapping
+## Delivery Model (Vertical Slices)
 
-- `P1` maps to README checklist section `A`.
-- `P2` maps to README checklist section `B`.
-- `P3` maps to README checklist section `C`.
-- `P4` maps to README checklist sections `D` and `E`.
-- `P5` maps to README checklist sections `F` and `G`.
-- `P6` maps to README checklist sections `H`, `I`, and `J`.
+- Day-to-day execution is organized into end-to-end slices.
+- Each slice cuts across data model, editor behavior, serialization, visualization, and validation at the current scope.
+- A slice is done when it is fully editable, serializable, reloadable, and validated for its scope.
+- Slices are not formally tracked as a field; they are planning units described in epics and tasks.
 
 ## Label Taxonomy
 
@@ -71,8 +66,6 @@ Change labels (cross-cutting dimension for issues and PRs)
 - `change:test`
 
 > Change labels are orthogonal to hierarchy labels. A Task can also be labeled as `change:chore`.
-
-> Phase is not tracked via labels. It is a Project field on the board.
 
 Area labels
 - `area:data-model`
@@ -104,15 +97,13 @@ Required Project fields:
 | Field    | Type          | Values |
 |----------|---------------|--------|
 | Status   | Single select | `New`, `Ready`, `In Progress`, `In Review`, `Blocked`, `Done` |
-| Phase    | Single select | `Phase-1` through `Phase-6` |
 | Kind     | Single select | `Epic`, `Task`, `Sub-task`, `Bug`, `Decision` |
-| Area     | Single select | matches `area:*` labels |
 | Priority | Single select | `Critical`, `Important`, `Low` |
 | Size     | Single select | `XS`, `S`, `M`, `L` |
 
 ## Operating Rules
 
-- Every issue must belong to exactly one phase milestone.
+- Every in-scope issue must be assigned to the `v0.1` milestone.
 - Every task must be linked to exactly one parent epic using GitHub native issue hierarchy.
 - Every sub-task must be linked to exactly one parent task using GitHub native issue hierarchy.
 - No issue moves to `In Progress` without acceptance criteria written in the issue body.
@@ -145,7 +136,7 @@ gh issue create \
 	--label "kind:task" \
 	--label "area:data-model" \
 	--label "priority:Important" \
-	--milestone "v0.1-P1 Data Model and Format"
+	--milestone "v0.1"
 ```
 
 After issue creation, link the task or sub-task to its parent issue in the GitHub UI using the right sidebar issue hierarchy control.
