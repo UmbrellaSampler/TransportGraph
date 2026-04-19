@@ -72,7 +72,7 @@ A network can include multiple transport modalities such as walking, roads, rail
   - Tool registration: provide mode-specific editor interactions.
   - Validation hooks: contribute additional domain checks.
   - Rendering adapters: map core entities to extension-specific visuals.
-- Extensions must read and write the same core `NetworkAsset` model.
+- Extensions must read and write the same core `Graph` model.
 - Extensions may add optional metadata blocks, but must not invalidate core asset loading.
 
 ### Non-Goals for Initial Release
@@ -100,7 +100,7 @@ Execution model for v0.1:
 - Start with the smallest working scope, then expand.
 
 Current intended sequence:
-1. Slice 1: NetworkAsset with nodes and links only (no layers).
+1. Slice 1: Graph with nodes and links only (no layers).
 2. Slice 2: Terrain-aware placement and rendering improvements for nodes and links.
 3. Slice 3: Add layers and layer-bound validation.
 4. Slice 4: Add areas and connectors.
@@ -109,7 +109,7 @@ Current intended sequence:
 Rule: A slice is done only when it is editable, serializable, reloadable, and validated for its current scope.
 
 ### A. Data Model and File Format
-- [ ] A `NetworkAsset` root structure exists with `id`, `name`, `version`, `layers`, `nodes`, `links`, `areas`, and `connectors`.
+- [ ] A `Graph` root structure exists with `id`, `name`, `version`, `layers`, `nodes`, `links`, `areas`, and `connectors`.
 - [ ] Every entity has a stable unique identifier.
 - [ ] Layer references are explicit and validated for all layer-bound entities.
 - [ ] Link direction is represented (`directed` or `undirected`) in the saved data.
