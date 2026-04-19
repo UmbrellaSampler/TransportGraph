@@ -1,6 +1,6 @@
 ## Project Management Model
 
-This document defines the general GitHub project management structure for GraphCreator3D.
+This document defines the general GitHub project management structure for TransportGraph.
 
 ## Purpose
 

@@ -2,14 +2,14 @@
 This document is preliminary and defines the product direction for the first stable framework release.
 
 ## Purpose
-GraphCreator3D is a Godot framework for creating and editing spatial, multimodal transport networks in 3D.
+TransportGraph is a Godot framework for creating and editing spatial, multimodal transport networks in 3D.
 
 The framework models transport systems as a generic network abstraction that can be applied to city and non-city domains. It focuses on authoring network topology and spatial geometry on editable terrain, not on detailed simulation of vehicles, agents, or economics.
 
 A network can include multiple transport modalities such as walking, roads, rail, bus, tram, cargo, utilities, and logistics transfer points, while remaining mode-agnostic at the core data model level.
 
 ## Product Positioning
-- GraphCreator3D is a core framework, not a final domain-specific editor.
+- TransportGraph is a core framework, not a final domain-specific editor.
 - Domain-specific editors (for example road editor, rail editor, utility editor) are expected as extensions built on top of this core.
 - The core defines shared topology, geometry, persistence, and validation foundations; extensions add narrowed semantics, richer UX, and richer visualization.
 
