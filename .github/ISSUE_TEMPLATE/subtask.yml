@@ -30,14 +30,3 @@ body:
         - [ ] AC1 ...
     validations:
       required: true
-
-  - type: textarea
-    id: dependencies
-    attributes:
-      label: Dependencies or blockers
-      description: Optional references to related issues.
-      placeholder: |
-        - Depends on #...
-        - Blocked by #...
-    validations:
-      required: false

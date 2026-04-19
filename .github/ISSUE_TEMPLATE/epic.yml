@@ -9,37 +9,11 @@ body:
       value: |
         Assign the `v0.1` milestone after issue creation.
 
-  - type: dropdown
-    id: area
-    attributes:
-      label: Primary area
-      options:
-        - "area:data-model"
-        - "area:serialization"
-        - "area:editor"
-        - "area:terrain"
-        - "area:validation"
-        - "area:rendering"
-        - "area:api"
-        - "area:testing"
-        - "area:docs"
-    validations:
-      required: true
-
-  - type: textarea
-    id: problem
-    attributes:
-      label: Problem statement
-      description: What is missing and why this epic exists.
-      placeholder: Describe the problem this epic solves.
-    validations:
-      required: true
-
   - type: textarea
     id: scope
     attributes:
       label: Scope boundaries
-      description: Explicitly list what is in and out.
+      description: What is to be done?
       placeholder: |
         In scope:
         - ...
@@ -58,24 +32,4 @@ body:
         - [ ] AC1 ...
         - [ ] AC2 ...
     validations:
-      required: true
-
-  - type: textarea
-    id: checklist_mapping
-    attributes:
-      label: README checklist mapping
-      description: Link exact Version 0.1 checklist items in README.
-      placeholder: "Example: README section A.1, A.3, A.6"
-    validations:
-      required: true
-
-  - type: textarea
-    id: decomposition
-    attributes:
-      label: Planned child tasks
-      description: Child tasks that will be created as sub-issues.
-      placeholder: |
-        - [ ] Task 1
-        - [ ] Task 2
-    validations:
-      required: true
+      required: false
