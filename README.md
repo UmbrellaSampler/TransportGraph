@@ -90,6 +90,24 @@ A network can include multiple transport modalities such as walking, roads, rail
 
 Release rule: Version 0.1 is complete only if every item below is checked.
 
+### Delivery Strategy (End-to-End Slices)
+
+The checklist below is a coverage map, not a required implementation order.
+
+Execution model for v0.1:
+- Build thin vertical slices that are usable end-to-end.
+- Each slice should include data model, editor behavior, serialization, visualization, and validation at the current scope.
+- Start with the smallest working scope, then expand.
+
+Current intended sequence:
+1. Slice 1: NetworkAsset with nodes and links only (no layers).
+2. Slice 2: Terrain-aware placement and rendering improvements for nodes and links.
+3. Slice 3: Add layers and layer-bound validation.
+4. Slice 4: Add areas and connectors.
+5. Slice 5: Expand query API, testing depth, and non-functional hardening.
+
+Rule: A slice is done only when it is editable, serializable, reloadable, and validated for its current scope.
+
 ### A. Data Model and File Format
 - [ ] A `NetworkAsset` root structure exists with `id`, `name`, `version`, `layers`, `nodes`, `links`, `areas`, and `connectors`.
 - [ ] Every entity has a stable unique identifier.

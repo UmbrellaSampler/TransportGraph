@@ -1,5 +1,5 @@
 name: Epic
-description: High-level implementation objective within one phase milestone
+description: High-level implementation objective within the v0.1 release
 title: "[Epic] "
 labels:
   - "kind:epic"
@@ -7,22 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Phase is tracked via Milestone and Project `Phase` field, not via labels.
-
-  - type: dropdown
-    id: phase
-    attributes:
-      label: Phase
-      description: Select exactly one phase; set matching milestone and Project Phase field after issue creation.
-      options:
-        - "Phase-1 (Data Model and Format)"
-        - "Phase-2 (Editor Core)"
-        - "Phase-3 (Terrain Authoring)"
-        - "Phase-4 (Multimodal and Validation)"
-        - "Phase-5 (UX and Query API)"
-        - "Phase-6 (Quality Demo Release)"
-    validations:
-      required: true
+        Assign the `v0.1` milestone after issue creation.
 
   - type: dropdown
     id: area

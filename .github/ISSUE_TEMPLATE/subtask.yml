@@ -7,23 +7,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Phase is tracked via Milestone and Project `Phase` field, not via labels.
+        Assign the `v0.1` milestone after issue creation.
         Link this issue to its parent task using GitHub's native issue hierarchy in the right sidebar after creation.
-
-  - type: dropdown
-    id: phase
-    attributes:
-      label: Phase
-      description: Select exactly one phase; set matching milestone and Project Phase field after issue creation.
-      options:
-        - "Phase-1 (Data Model and Format)"
-        - "Phase-2 (Editor Core)"
-        - "Phase-3 (Terrain Authoring)"
-        - "Phase-4 (Multimodal and Validation)"
-        - "Phase-5 (UX and Query API)"
-        - "Phase-6 (Quality Demo Release)"
-    validations:
-      required: true
 
   - type: textarea
     id: deliverable
