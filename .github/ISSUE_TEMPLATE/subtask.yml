@@ -8,15 +8,7 @@ body:
     attributes:
       value: |
         Phase is tracked via Milestone and Project `Phase` field, not via labels.
-
-  - type: input
-    id: parent_task
-    attributes:
-      label: Parent task issue
-      description: Provide task reference like #34.
-      placeholder: "#<task-issue-number>"
-    validations:
-      required: true
+        Link this issue to its parent task using GitHub's native issue hierarchy in the right sidebar after creation.
 
   - type: dropdown
     id: phase

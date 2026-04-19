@@ -8,15 +8,7 @@ body:
     attributes:
       value: |
         Phase is tracked via Milestone and Project `Phase` field, not via labels.
-
-  - type: input
-    id: parent_epic
-    attributes:
-      label: Parent epic issue
-      description: Provide epic reference like #12.
-      placeholder: "#<epic-issue-number>"
-    validations:
-      required: true
+        Link this issue to its parent epic using GitHub's native issue hierarchy in the right sidebar after creation.
 
   - type: dropdown
     id: phase
