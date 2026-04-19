@@ -23,11 +23,13 @@ This document defines the general GitHub project management structure for Transp
 	- Must be assigned to one phase milestone and one Project `Phase` field value.
 - Task:
 	- Implementable work item under one epic.
+	- Parent relationship must be tracked via GitHub native issue hierarchy by setting the epic as the parent issue.
 	- Must include objective and acceptance criteria.
 	- Labeled with `kind:task`.
 	- Must be assigned to one phase milestone and one Project `Phase` field value.
 - Sub-task:
 	- Independently tracked child item under one task.
+	- Parent relationship must be tracked via GitHub native issue hierarchy by setting the task as the parent issue.
 	- Use only when separate ownership or status tracking is needed.
 	- Labeled with `kind:subtask`.
 	- Must be assigned to one phase milestone and one Project `Phase` field value.
@@ -95,6 +97,7 @@ Priority labels
 - Use one GitHub Project for Version 0.1 execution.
 - Labels are the canonical classification system for permanent issue taxonomy.
 - Mutable workflow state is tracked as a Project field, not a label.
+- Epic/task/sub-task hierarchy is tracked via native GitHub parent-child issue relationships, not issue body text.
 
 Required Project fields:
 
@@ -110,8 +113,8 @@ Required Project fields:
 ## Operating Rules
 
 - Every issue must belong to exactly one phase milestone.
-- Every task must have a parent epic.
-- Every sub-task must have a parent task.
+- Every task must be linked to exactly one parent epic using GitHub native issue hierarchy.
+- Every sub-task must be linked to exactly one parent task using GitHub native issue hierarchy.
 - No issue moves to `In Progress` without acceptance criteria written in the issue body.
 - `Blocked` status requires blocker details in the issue body.
 - `Done` status requires a merge reference or explicit no-code justification.
@@ -127,9 +130,6 @@ Recommended workflow:
 cat > /tmp/issue.md <<'EOF'
 ## Objective
 Short objective sentence.
-
-## Parent Epic
-- #10 Epic title
 
 ## Acceptance Criteria
 - [ ] First criterion
@@ -147,6 +147,8 @@ gh issue create \
 	--label "priority:Important" \
 	--milestone "v0.1-P1 Data Model and Format"
 ```
+
+After issue creation, link the task or sub-task to its parent issue in the GitHub UI using the right sidebar issue hierarchy control.
 
 Update existing issue body safely:
 
